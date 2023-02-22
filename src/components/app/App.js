@@ -1,3 +1,4 @@
+import Content from '../content/Content'
 import Collection from '../collection/Collection'
 import CollectionItemInfo from '../collectionItemInfo/CollectionItemInfo'
 
@@ -6,8 +7,10 @@ import './App.css'
 function App() {
   return (
     <div className="App">
-      <Collection />
-      <CollectionItemInfo />
+      <Content
+        collection={<Collection />}
+        collectionItemInfo={<CollectionItemInfo />}
+      />
     </div>
   )
 }
