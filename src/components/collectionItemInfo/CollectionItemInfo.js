@@ -15,10 +15,10 @@ const CollectionItemInfo = () => {
         <li className="list-group-item">A third item</li>
       </ul>
       <div className="card-body">
-        <a href="#" class="card-link">
+        <a href="#" className="card-link">
           Card link
         </a>
-        <a href="#" class="card-link">
+        <a href="#" className="card-link">
           Another link
         </a>
       </div>
