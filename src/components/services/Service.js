@@ -14,8 +14,23 @@ class Service {
     return this.getResource(`${this._apiBase}objects`)
   }
 
-  getItem = (id) => {
-    return this.getResource(`${this._apiBase}objects/${id}`)
+  getItem = async (id) => {
+    const res = await this.getResource(`${this._apiBase}objects/${id}`)
+    return this._transformItem(res)
+  }
+
+  _transformItem = (res) => {
+    return {
+      title: res.title,
+      objectDate: res.objectDate,
+      medium: res.medium,
+      city: res.city,
+      country: res.country,
+      primaryImageSmall: res.primaryImageSmall,
+      artistDisplayName: res.artistDisplayName,
+      objectURL: res.objectURL,
+      objectWikidata_URL: res.objectWikidata_URL,
+    }
   }
 }
 

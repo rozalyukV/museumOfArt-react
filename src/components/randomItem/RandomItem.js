@@ -8,48 +8,33 @@ class RandomItem extends Component {
   }
 
   state = {
-    title: null,
-    objectDate: null,
-    medium: null,
-    city: null,
-    country: null,
-    primaryImageSmall: null,
-    artistDisplayName: null,
-    artistDisplayBio: null,
-    objectURL: null,
-    objectWikidata_URL: null,
+    item: {},
   }
 
   service = new Service()
 
+  onItemLoaded = (item) => {
+    this.setState({ item })
+  }
+
   updateItem = () => {
     const id = Math.floor(Math.random() * (894313 - 1) + 1)
-    this.service.getItem(id).then((res) => {
-      this.setState({
-        title: res.title,
-        objectDate: res.objectDate,
-        medium: res.medium,
-        city: res.city,
-        country: res.country,
-        primaryImageSmall: res.primaryImageSmall,
-        artistDisplayName: res.artistDisplayName,
-        objectURL: res.objectURL,
-        objectWikidata_URL: res.objectWikidata_URL,
-      })
-    })
+    this.service.getItem(id).then(this.onItemLoaded)
   }
 
   render() {
     const {
-      title,
-      objectDate,
-      medium,
-      city,
-      country,
-      primaryImageSmall,
-      artistDisplayName,
-      objectURL,
-      objectWikidata_URL,
+      item: {
+        title,
+        objectDate,
+        medium,
+        city,
+        country,
+        primaryImageSmall,
+        artistDisplayName,
+        objectURL,
+        objectWikidata_URL,
+      },
     } = this.state
     return (
       <div className="container px-4 my-4">
