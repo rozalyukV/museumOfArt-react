@@ -1,4 +1,4 @@
-class Services {
+class Service {
   _apiBase = 'https://collectionapi.metmuseum.org/public/collection/v1/'
 
   getResource = async (url) => {
@@ -19,4 +19,4 @@ class Services {
   }
 }
 
-export default Services
+export default Service
