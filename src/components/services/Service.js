@@ -21,13 +21,13 @@ class Service {
 
   _transformItem = (res) => {
     return {
-      title: res.title,
-      objectDate: res.objectDate,
-      medium: res.medium,
-      city: res.city,
-      country: res.country,
+      title: res.title ? res.title : '-',
+      objectDate: res.objectDate ? res.objectDate : '-',
+      medium: res.medium ? res.medium : '-',
+      city: res.city ? res.city : '-',
+      country: res.country ? res.country : '-',
       primaryImageSmall: res.primaryImageSmall,
-      artistDisplayName: res.artistDisplayName,
+      artistDisplayName: res.artistDisplayName ? res.artistDisplayName : '-',
       objectURL: res.objectURL,
       objectWikidata_URL: res.objectWikidata_URL,
     }
