@@ -3,7 +3,7 @@ import img from './error.gif'
 const ErrorMessage = () => {
   return (
     <img
-      styles={{
+      style={{
         display: 'block',
         width: '250px',
         height: '250px',
@@ -11,6 +11,7 @@ const ErrorMessage = () => {
         margin: '0 auto',
       }}
       src={img}
+      alt="Error"
     />
   )
 }
