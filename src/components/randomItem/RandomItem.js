@@ -45,17 +45,21 @@ class RandomItem extends Component {
           {spinner}
           {content}
           <div className="col">
-            <div className="card h-100 text-bg-dark">
-              <img src="..." className="card-img" alt="..." />
-              <div className="card-img-overlay">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-                <button type="button" className="btn btn-primary">
-                  Primary
+            <div className="card h-100 shadow-lg">
+              <div className="card-body d-flex flex-column justify-content-between">
+                <h5 className="card-title">Random work of art for today!</h5>
+                <div>
+                  <p className="card-text">
+                    Want to know more about this work of art?
+                  </p>
+                  <p className="fw-bold">Or choose another one!</p>
+                </div>
+
+                <button
+                  type="button"
+                  className="btn btn-outline-dark text-uppercase"
+                >
+                  Try it!
                 </button>
               </div>
             </div>
@@ -78,34 +82,48 @@ const View = ({ item }) => {
     objectURL,
     objectWikidata_URL,
   } = item
+
   return (
     <div className="col">
-      <div className="card h-100">
+      <div className="card h-100 shadow-lg">
         <div className="row g-0">
-          <div className="col-md-4">
+          <div className="col-md-4 d-flex align-items-center p-3 justify-content-center">
             <img
               src={primaryImageSmall}
-              className="card-img-top img-thumbnail"
-              alt="..."
+              className="img-fluid"
+              alt="Image of Art object"
             />
           </div>
-          <div className="col-md-8">
+          <div className="col-md-8 d-flex flex-column justify-content-between">
             <div className="card-body">
               <h5 className="card-title">{title}</h5>
-              <p className="card-text">Materials: {medium}</p>
-              <p className="card-text">City: {city}</p>
-              <p className="card-text">Country: {country}</p>
-              <p className="card-text">Creation time: {objectDate}</p>
-              <p className="card-text">Artist: {artistDisplayName}</p>
+              <p className="card-text">
+                <span className="fw-bold">Materials:</span> {medium}
+              </p>
+              <p className="card-text">
+                <span className="fw-bold">City:</span> {city}
+              </p>
+              <p className="card-text">
+                <span className="fw-bold">Country:</span> {country}
+              </p>
+              <p className="card-text">
+                <span className="fw-bold">Creation time:</span> {objectDate}
+              </p>
+              <p className="card-text">
+                <span className="fw-bold">Artist:</span> {artistDisplayName}
+              </p>
+            </div>
+
+            <div className="d-flex justify-content-end me-3 mb-3">
               <a
                 href={objectURL}
-                className="btn btn-primary me-3 text-uppercase"
+                className="btn btn-outline-dark text-uppercase"
               >
                 Homepage
               </a>
               <a
                 href={objectWikidata_URL}
-                className="btn btn-primary text-uppercase"
+                className="btn btn-outline-dark text-uppercase ms-3"
               >
                 Wiki
               </a>
