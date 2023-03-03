@@ -20,6 +20,12 @@ class RandomItem extends Component {
     this.setState({ item, loading: false })
   }
 
+  onItemLoading = () => {
+    this.setState({
+      loading: true,
+    })
+  }
+
   onError = () => {
     this.setState({
       loading: false,
@@ -29,6 +35,7 @@ class RandomItem extends Component {
 
   updateItem = () => {
     const id = Math.floor(Math.random() * (894313 - 1) + 1)
+    this.onItemLoading()
     this.service.getItem(id).then(this.onItemLoaded).catch(this.onError)
   }
 
@@ -40,7 +47,7 @@ class RandomItem extends Component {
 
     return (
       <div className="container px-4 my-4">
-        <div className="row row-cols-1 row-cols-md-2 g-4">
+        <div className="row row-cols-1 row-cols-lg-2 g-4">
           {errorMessage}
           {spinner}
           {content}
@@ -57,7 +64,8 @@ class RandomItem extends Component {
 
                 <button
                   type="button"
-                  className="btn btn-outline-dark text-uppercase"
+                  className="btn btn-outline-dark text-uppercase mt-3"
+                  onClick={this.updateItem}
                 >
                   Try it!
                 </button>
@@ -91,7 +99,7 @@ const View = ({ item }) => {
             <img
               src={primaryImageSmall}
               className="img-fluid"
-              alt="Image of Art object"
+              alt="Work of art"
             />
           </div>
           <div className="col-md-8 d-flex flex-column justify-content-between">
