@@ -9,21 +9,45 @@ class Collection extends Component {
   state = {
     collection: [],
     loading: true,
+    newItemsLoading: false,
     error: false,
-    offset: 3200,
+    offset: 484000,
+    itemsEnded: false,
   }
 
   service = new Service()
 
   componentDidMount() {
+    this.onRequest(this.state.offset)
+  }
+
+  onRequest = (offset) => {
+    this.onCollectionLoading()
     this.service
-      .getCollection(this.state.offset)
+      .getCollection(offset)
       .then(this.onCollectionLoaded)
       .catch(this.onError)
   }
 
-  onCollectionLoaded = (collection) => {
-    this.setState({ collection, loading: false })
+  onCollectionLoading = () => {
+    this.setState({
+      newItemsLoading: true,
+    })
+  }
+
+  onCollectionLoaded = (newCollection) => {
+    let ended = false
+    if (newCollection.length < 9) {
+      ended = true
+    }
+
+    this.setState(({ offset, collection }) => ({
+      collection: [...collection, ...newCollection],
+      loading: false,
+      newItemsLoading: false,
+      offset: offset + 9,
+      itemsEnded: ended,
+    }))
   }
 
   onError = () => {
@@ -40,7 +64,11 @@ class Collection extends Component {
         styles = { objectFit: 'none' }
       }
       return (
-        <div className="col" key={item.objectID}>
+        <div
+          className="col"
+          key={item.objectID}
+          onClick={() => this.props.onItemSelected(item.objectID)}
+        >
           <div className="card h-100 shadow-lg">
             <img
               src={item.primaryImageSmall}
@@ -76,7 +104,8 @@ class Collection extends Component {
   }
 
   render() {
-    const { collection, loading, error } = this.state
+    const { collection, loading, error, newItemsLoading, offset, itemsEnded } =
+      this.state
     const items = this.renderItems(collection)
 
     const errorMessage = error ? <ErrorMessage /> : null
@@ -97,8 +126,12 @@ class Collection extends Component {
             <button
               type="button"
               className="btn btn-dark text-uppercase"
-              style={{ width: '180px' }}
-              onClick={this.updateItem}
+              disabled={newItemsLoading}
+              style={{
+                width: '180px',
+                display: itemsEnded ? 'none' : 'inline',
+              }}
+              onClick={() => this.onRequest(offset)}
             >
               Load more
             </button>
