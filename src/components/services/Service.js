@@ -38,15 +38,18 @@ class Service {
   _transformItem = (res) => {
     return {
       objectID: res.objectID,
+      isHighlight: res.isHighlight,
       artistBeginDate: res.artistBeginDate ? res.artistBeginDate : '...',
       artistEndDate: res.artistEndDate ? res.artistEndDate : '...',
       title: res.title ? res.title : '-',
       objectDate: res.objectDate ? res.objectDate : '-',
       medium: res.medium ? res.medium : '-',
+      dimensions: res.dimensions ? res.dimensions : '-',
       city: res.city ? res.city : '-',
       country: res.country ? res.country : '-',
       primaryImageSmall: res.primaryImageSmall ? res.primaryImageSmall : noImg,
       artistDisplayName: res.artistDisplayName ? res.artistDisplayName : '-',
+      artistDisplayBio: res.artistDisplayBio ? res.artistDisplayBio : '-',
       objectURL: res.objectURL,
       objectWikidata_URL: res.objectWikidata_URL,
     }
