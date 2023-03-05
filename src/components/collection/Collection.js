@@ -5,6 +5,7 @@ import ErrorMessage from '../errorMessage/ErrorMessage'
 import Spinner from '../spinner/Spinner'
 import Service from '../services/Service'
 
+import './collection.css'
 import imgNone from '../../resources/img/no-image-100.png'
 
 class Collection extends Component {
@@ -13,7 +14,7 @@ class Collection extends Component {
     loading: true,
     newItemsLoading: false,
     error: false,
-    offset: 484000,
+    offset: 0,
     itemsEnded: false,
   }
 
@@ -59,19 +60,38 @@ class Collection extends Component {
     })
   }
 
+  itemRefs = []
+
+  setRef = (ref) => {
+    this.itemRefs.push(ref)
+  }
+
+  focusOnItem = (id) => {
+    this.itemRefs.forEach((item) => item.classList.remove('focusStyle'))
+    this.itemRefs.forEach((item) => item.classList.add('shadow-lg'))
+    this.itemRefs[id].classList.remove('shadow-lg')
+    this.itemRefs[id].classList.add('focusStyle')
+    this.itemRefs[id].focus()
+  }
+
   renderItems(arr) {
-    const items = arr.map((item) => {
+    const items = arr.map((item, i) => {
       let styles = null
       if (item.primaryImageSmall === imgNone) {
         styles = { objectFit: 'none' }
       }
       return (
-        <div
-          className="col"
-          key={item.objectID}
-          onClick={() => this.props.onItemSelected(item.objectID)}
-        >
-          <div className="card h-100 shadow-lg">
+        <div className="col">
+          <div
+            className="card h-100 shadow-lg"
+            tabIndex={0}
+            ref={this.setRef}
+            key={item.objectID}
+            onClick={() => {
+              this.props.onItemSelected(item.objectID)
+              this.focusOnItem(i)
+            }}
+          >
             <img
               src={item.primaryImageSmall}
               className="img-fluid p-3"

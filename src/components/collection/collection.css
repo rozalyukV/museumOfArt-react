@@ -1,0 +1,5 @@
+.focusStyle {
+    box-shadow: 0 5px 20px #20c997;
+    transform: translateY(-8px);
+    transition: 0.3s transform;
+  }
