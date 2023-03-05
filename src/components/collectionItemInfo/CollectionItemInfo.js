@@ -1,4 +1,6 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import ErrorMessage from '../errorMessage/ErrorMessage'
 import Spinner from '../spinner/Spinner'
 import Service from '../services/Service'
@@ -153,6 +155,10 @@ const View = ({ item }) => {
       </div>
     </>
   )
+}
+
+CollectionItemInfo.propTypes = {
+  itemId: PropTypes.number,
 }
 
 export default CollectionItemInfo
