@@ -13,7 +13,9 @@ class Service {
   }
 
   getCollectionIds = async () => {
-    const res = await this.getResource(`${this._apiBase}objects`)
+    const res = await this.getResource(
+      `${this._apiBase}objects?departmentIds=11`
+    )
     return res.objectIDs
   }
 
@@ -23,7 +25,7 @@ class Service {
   }
 
   getCollection = async (offset) => {
-    const arrOfIds = await this.getCollectionIds(offset)
+    const arrOfIds = await this.getCollectionIds()
     const limitedArrOfIds = arrOfIds.slice(offset, offset + 9)
     const arrOfItems = await Promise.all(
       limitedArrOfIds.map(async (item) => {
