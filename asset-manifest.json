@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/museumOfArt-react/static/css/main.11e08090.css",
+    "main.js": "/museumOfArt-react/static/js/main.35ee2615.js",
+    "static/media/error.gif": "/museumOfArt-react/static/media/error.42292aa12b6bc303ce99.gif",
+    "index.html": "/museumOfArt-react/index.html",
+    "main.11e08090.css.map": "/museumOfArt-react/static/css/main.11e08090.css.map",
+    "main.35ee2615.js.map": "/museumOfArt-react/static/js/main.35ee2615.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.11e08090.css",
+    "static/js/main.35ee2615.js"
+  ]
+}
