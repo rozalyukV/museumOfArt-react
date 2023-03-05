@@ -23,6 +23,7 @@ class RandomItem extends Component {
   onItemLoading = () => {
     this.setState({
       loading: true,
+      error: false,
     })
   }
 
